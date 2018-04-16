@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Scheme\" />
+    <Folder Include="Data\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Tables\" />
+    <Folder Include="Tables\MySql\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Database\" />
+    <Folder Include="Database\MySql\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="6.10.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+</Project>
