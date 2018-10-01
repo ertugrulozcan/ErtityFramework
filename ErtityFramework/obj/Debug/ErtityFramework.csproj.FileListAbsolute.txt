@@ -1,0 +1,14 @@
+C:\Projects Ex\ErtityFramework\bin\Debug\ErtityFramework.dll.config
+C:\Projects Ex\ErtityFramework\bin\Debug\ErtityFramework.dll
+C:\Projects Ex\ErtityFramework\bin\Debug\ErtityFramework.pdb
+C:\Projects Ex\ErtityFramework\bin\Debug\EntityFramework.dll
+C:\Projects Ex\ErtityFramework\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects Ex\ErtityFramework\bin\Debug\MySql.Data.dll
+C:\Projects Ex\ErtityFramework\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Projects Ex\ErtityFramework\bin\Debug\EntityFramework.xml
+C:\Projects Ex\ErtityFramework\bin\Debug\EntityFramework.SqlServer.xml
+C:\Projects Ex\ErtityFramework\obj\Debug\ErtityFramework.dll
+C:\Projects Ex\ErtityFramework\obj\Debug\ErtityFramework.pdb
+C:\Projects Ex\ErtityFramework\obj\Debug\ErtityFramework.csprojAssemblyReference.cache
+C:\Projects Ex\ErtityFramework\obj\Debug\ErtityFramework.csproj.CoreCompileInputs.cache
+C:\Projects Ex\ErtityFramework\obj\Debug\ErtityFramework.csproj.CopyComplete

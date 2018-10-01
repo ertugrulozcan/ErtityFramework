@@ -10,6 +10,8 @@ using ErtityFramework.Scheme;
 using System.Data.Common;
 using ErtityFramework.Data;
 using ErtityFramework.Helpers;
+using ErtityFramework.Database;
+using ErtityFramework.Database.MySql;
 
 namespace ErtityFramework.Tables.MySql
 {
@@ -41,7 +43,7 @@ namespace ErtityFramework.Tables.MySql
 
         #region Constructors
 
-        public Table(string connectionString) : base(connectionString)
+        public Table(IDatabase<MySqlConnection, MySqlConnectionString> db) : base(db)
         {
 
         }
@@ -49,32 +51,7 @@ namespace ErtityFramework.Tables.MySql
         #endregion
 
         #region Query Methods
-
-        private R ExecuteQuery<R>(ref MySqlConnection connection, Func<R> function)
-        {
-            R result = default(R);
-
-            try
-            {
-                using (connection = new MySqlConnection(this.ConnectionString))
-                {
-                    connection.Open();
-                    result = function();
-                    connection.Close();
-                }
-            }
-            catch (MySqlException mysqlEx)
-            {
-                System.Diagnostics.Debug.WriteLine("Database'e bağlanılamıyor! \n\r" + mysqlEx.StackTrace);
-            }
-            catch (System.Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.StackTrace);
-            }
-
-            return result;
-        }
-
+        
         protected override T ExecuteSelect(int id, MySqlConnection connection)
         {
             try

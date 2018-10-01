@@ -3,33 +3,16 @@ using System.Collections.ObjectModel;
 using ErtityFramework.Entities;
 using ErtityFramework.Tables;
 using ErtityFramework.Tables.MySql;
+using ErtityFramework.Database.MySql;
+using MySql.Data.MySqlClient;
+using System.Data.Common;
 
 namespace ErtityFramework.Database
 {
-    public interface IDatabaseConnector
+    public interface IDatabaseConnector<ConnectionType, ConnectionStringType> where ConnectionType : DbConnection where ConnectionStringType : IConnectionString
     {
-        ReadOnlyCollection<ITable> Tables { get; }
+        ConnectionStringType ConnectionString { get; }
 
-        string Host { get; }
-
-        int Port { get; }
-
-        string Username { get; }
-
-        string Password { get; }
-
-        string DbName { get; }
-
-        bool PersistSecurityInfo { get; set; }
-
-        string Charset { get; set; }
-
-        string ConnectionString { get; }
-
-        bool Connect(string host, int port, string username, string password);
-
-        void RegisterTableModel<T>() where T : EntityBase;
-
-        Table<T> GetTable<T>() where T : EntityBase;
+        ConnectionType GetConnection();
     }
 }

@@ -3,23 +3,16 @@ using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using ErtityFramework.Entities;
+using ErtityFramework.Database;
+using DbAbstraction = ErtityFramework.Database.IDatabase<MySql.Data.MySqlClient.MySqlConnection, ErtityFramework.Database.MySql.MySqlConnectionString>;
 
 namespace ErtityFramework.Tables.MySql
 {
-    public abstract class TableBase
-    {
-
-    }
-
     public abstract class TableBase<T> : TableBase, ITable<T> where T : EntityBase
     {
-        #region Constants
-
-        protected readonly string ConnectionString;
-
-        #endregion
-
         #region Properties
+
+        private DbAbstraction Database { get; set; }
 
         public abstract string TableName { get; }
 
@@ -27,9 +20,9 @@ namespace ErtityFramework.Tables.MySql
 
         #region Constructors
 
-        protected TableBase(string connectionString)
+        protected TableBase(DbAbstraction database)
         {
-            this.ConnectionString = connectionString;
+            Database = database;
         }
 
         #endregion
@@ -37,9 +30,13 @@ namespace ErtityFramework.Tables.MySql
         #region Abstract Methods
 
         protected abstract T ExecuteSelect(int id, MySqlConnection connection);
+
         protected abstract List<T> ExecuteSelect(MySqlConnection connection);
+
         protected abstract T ExecuteInsert(T entity, MySqlConnection connection);
+
         protected abstract bool ExecuteUpdate(T entity, MySqlConnection connection);
+
         protected abstract bool ExecuteDelete(int id, MySqlConnection connection);
 
         #endregion
@@ -52,7 +49,7 @@ namespace ErtityFramework.Tables.MySql
 
             try
             {
-                using (connection = new MySqlConnection(this.ConnectionString))
+                using (connection = this.Database.Connector.GetConnection())
                 {
                     connection.Open();
                     result = function();
